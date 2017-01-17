@@ -80,7 +80,29 @@ class Producto extends CI_Controller
             $elimina=$this->Model->_Delete('productos',$Where,'');
     }
 
-      
+   public function Modificar() {
+
+        $token=$this->uri->segment("3");
+        $datos['producto']= $this->Model->CargarDatos($token);
+
+        $this->load->view('Estandar/table',$datos);
+
+    }  
+
+    public function editar(){
+
+        $token = $this->input->post('token');               
+        
+        $data=array();
+        $data['token']=$this->input->post('token');
+        $data['nombre'] = $this->input->post("nombre");
+        
+
+        $agregar=$this->Model->editar('productos',$data,$token);
+        redirect('Estandar/table');
+
+
+    }
                         
             
 

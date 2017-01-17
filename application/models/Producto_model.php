@@ -37,6 +37,21 @@ public function _SaveData($Table,$Array,$Where,$opc,$Pk=''){
         }   
 }
 
+public function modificar($Table,$Array,$Where,$opc,$Pk=''){
+        
+        $this->db->update($Table, $Array);  
+        return $this->db->insert_id();
+
+    }
+
+    public function CargarDatos($token){
+
+		$this->db->where('token',$token);
+		$datos= $this->db->get('productos');		
+		return $datos->row();		
+	}
+
+
 }
 
 /* End of file Producto_model.php */
